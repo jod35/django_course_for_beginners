@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="post">
+   <h1>{{ post.id }} |{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <a href="{% url 'update_post' post_id=post.id %}" class="update-link">Update</a>
+</div>
+{% endblock content %}
+    
