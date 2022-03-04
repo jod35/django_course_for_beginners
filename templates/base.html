@@ -11,9 +11,16 @@
 <body>
     <header>
         <a href="{% url 'posts_home' %}">Home</a>
-        <a href="{% url 'posts_about' %}">About</a>
-        <a href="{% url 'posts_services' %}">Services</a>
-        <a href="{% url 'create_post' %}">Create Post</a>
+        
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'create_post' %}">Create Post</a>
+            <a href="{% url 'log_out' %}">Log Out</a>
+
+        {% else %}
+            <a href="{% url 'sign_up' %}">Sign Up</a>
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+              
     </header>
     
     {% block content %}
