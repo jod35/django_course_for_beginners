@@ -49,3 +49,13 @@ form{
     color: black;
     text-decoration: none;
 }
+.error{
+    color: red;
+    font-size: 12;
+}
+.alert{
+    padding: 20px;
+    background-color: lightgreen;
+    color: white;
+    text-align: center;
+}

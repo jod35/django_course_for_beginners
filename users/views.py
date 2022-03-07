@@ -1,7 +1,10 @@
 from django.shortcuts import render,redirect
+
+from posts.forms import PostCreationForm
 from .forms import LoginForm,UserRegistrationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
+from django.contrib import messages
 
 # Create your views here.
 
@@ -11,25 +14,14 @@ def sign_up(request):
     form=UserRegistrationForm()
 
     if request.method == "POST":
-        username=request.POST["username"]
-        email=request.POST["email"]
-        password=request.POST["password"]
-        confirm=request.POST["confirm"]
+        form=UserRegistrationForm(request.POST)
 
-        if password == confirm:
-            new_user=User.objects.create_user(
-                username=username,
-                email=email
-            )
+        if form.is_valid():
+            form.save()
 
-            new_user.set_password(password)
+            messages.success(request,"User Created Successfully")
 
-            new_user.save()
-
-            return redirect('posts_home')
-
-
-
+            return redirect('login')
 
     context={
         'form':form
