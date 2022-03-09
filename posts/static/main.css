@@ -59,3 +59,9 @@ form{
     color: white;
     text-align: center;
 }
+.alert-error{
+    padding: 20px;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
