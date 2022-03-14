@@ -6,6 +6,7 @@
         <div class="post">
             <a href="{% url 'post_detail' post_id=post.id %}" class="link"><h1>{{ post.id }} |{{ post.title }}</h1></a>
             <p>{{ post.content }}</p>
+            <img src="{{post.thumbnail.url}}" alt="" class="image">
         </div>
     {% endfor %}
         
