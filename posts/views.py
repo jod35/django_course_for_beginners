@@ -6,6 +6,7 @@ from .models import Post
 from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -26,8 +27,14 @@ class HomePageView(View):
     def get(self,request):
         posts=Post.objects.all()
 
+        paginator=Paginator(posts,3)
+
+        page_number=request.GET.get('page')
+
+        page_obj=paginator.get_page(page_number)
+
         context={
-            'posts':posts
+            'posts':page_obj
         }
         return render(request,self.template_name,context)
 

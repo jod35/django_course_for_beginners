@@ -6,9 +6,21 @@
         <div class="post">
             <a href="{% url 'post_detail' post_id=post.id %}" class="link"><h1>{{ post.id }} |{{ post.title }}</h1></a>
             <p>{{ post.content }}</p>
-            <img src="{{post.thumbnail.url}}" alt="" class="image">
         </div>
     {% endfor %}
+    <div class="pagination">
+        
+        
+        {% if posts.has_previous %}
+            <a href="{% url 'posts_home' %}?page={{posts.previous_page_number}}">Previous</a>
+        {% endif %}
+            
+        <p>Page {{posts.number}} of {{posts.paginator.num_pages}}</p>
+        {% if posts.has_next %}
+            <a href="{% url 'posts_home' %}?page={{posts.next_page_number}}">Next</a>
+        {% endif %}
+            
+    </div>
         
 {% endblock content %}
     

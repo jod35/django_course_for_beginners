@@ -65,3 +65,9 @@ form{
     color: white;
     text-align: center;
 }
+
+.pagination{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+}
