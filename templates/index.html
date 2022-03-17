@@ -1,26 +1,26 @@
-{% extends 'base.html' %}
-{% block content %}
-    <h1>List of posts</h1> 
-    
-    {% for post in posts %}
-        <div class="post">
-            <a href="{% url 'post_detail' post_id=post.id %}" class="link"><h1>{{ post.id }} |{{ post.title }}</h1></a>
-            <p>{{ post.content }}</p>
-        </div>
-    {% endfor %}
-    <div class="pagination">
-        
-        
-        {% if posts.has_previous %}
-            <a href="{% url 'posts_home' %}?page={{posts.previous_page_number}}">Previous</a>
-        {% endif %}
-            
-        <p>Page {{posts.number}} of {{posts.paginator.num_pages}}</p>
-        {% if posts.has_next %}
-            <a href="{% url 'posts_home' %}?page={{posts.next_page_number}}">Next</a>
-        {% endif %}
-            
-    </div>
-        
+{% extends 'base.html' %} {% block content %}
+<div class="posts">
+  {% for post in posts %}
+  <div class="post">
+    <a href="{% url 'post_detail' post_id=post.id %}" class="link"
+      ><h1>{{ post.id }} |{{ post.title }}</h1></a
+    >
+    <p class="post-content">{{ post.content }}</p>
+    <img src="{{post.thumbnail.url}}" alt="thumbnail" class="image" />
+  </div>
+  {% endfor %}
+</div>
+<div class="pagination">
+  {% if posts.has_previous %}
+  <a href="{% url 'posts_home' %}?page={{posts.previous_page_number}}"
+    >Previous</a
+  >
+  {% endif %}
+
+  <p>Page {{posts.number}} of {{posts.paginator.num_pages}}</p>
+  {% if posts.has_next %}
+  <a href="{% url 'posts_home' %}?page={{posts.next_page_number}}">Next</a>
+  {% endif %}
+</div>
+
 {% endblock content %}
-    
