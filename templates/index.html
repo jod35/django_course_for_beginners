@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} {% if posts %}
 <div class="posts">
   {% for post in posts %}
   <div class="post">
@@ -10,6 +10,12 @@
   </div>
   {% endfor %}
 </div>
+{% else %}
+<div class="no-posts">
+  <h1 class="no-posts-head">No posts</h1>
+</div>
+{% endif %}
+
 <div class="pagination">
   {% if posts.has_previous %}
   <a href="{% url 'posts_home' %}?page={{posts.previous_page_number}}"
